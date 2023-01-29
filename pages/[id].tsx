@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { PokeType } from "../types/pokemon";
-import Pokemons from "../components/pokemons";
+import { PokeType } from "../src/types/pokemon";
+import Pokemons from "../src/components/pokemons";
 import {
   LineIcon,
   LineShareButton,
   TwitterIcon,
   TwitterShareButton,
 } from "react-share";
-import { GetUserInfo } from "../lib/user";
+import { GetUserInfo } from "../src/lib/user";
 import { useRouter } from "next/router";
-import Layout from "../components/layout";
-import Meta from "../components/meta";
+import Layout from "../src/components/layout";
+import Meta from "../src/components/meta";
 import Image from "next/image";
 
 const AllUserInfo = () => {

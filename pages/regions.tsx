@@ -1,8 +1,8 @@
-import { RegionType } from "../types/pokemon";
-import Layout from "../components/layout";
+import { RegionType } from "../src/types/pokemon";
+import Layout from "../src/components/layout";
 import Link from "next/link";
-import { getJaRegions } from "../lib/pokemon";
-import Meta from "../components/meta";
+import { getJaRegions } from "../src/lib/pokemon";
+import Meta from "../src/components/meta";
 import router from "next/router";
 
 type Props = {

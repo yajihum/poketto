@@ -1,16 +1,16 @@
-import { PokeType } from "../types/pokemon";
-import Layout from "../components/layout";
+import { PokeType } from "../src/types/pokemon";
+import Layout from "../src/components/layout";
 import Link from "next/link";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../src/context/auth";
 import { useEffect, useState } from "react";
-import InputField from "../components/input-field";
+import InputField from "../src/components/input-field";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Button from "../components/button";
-import Pokemons from "../components/pokemons";
+import Button from "../src/components/button";
+import Pokemons from "../src/components/pokemons";
 import router from "next/router";
-import { GetPokeTypeArrayFromJson } from "../lib/pokemon";
-import PokeShareModal from "../components/pokemon-share-modal";
-import Meta from "../components/meta";
+import { GetPokeTypeArrayFromJson } from "../src/lib/pokemon";
+import PokeShareModal from "../src/components/pokemon-share-modal";
+import Meta from "../src/components/meta";
 import Image from "next/image";
 
 const Share = () => {

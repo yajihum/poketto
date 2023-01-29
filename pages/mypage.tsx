@@ -1,16 +1,16 @@
-import Layout from "../components/layout";
-import UserGuard from "../guards/user-guard";
+import Layout from "../src/components/layout";
+import UserGuard from "../src/guards/user-guard";
 import Link from "next/link";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../src/context/auth";
 import React, { useEffect, useState } from "react";
-import Pokemons from "../components/pokemons";
-import { GetUserInfo } from "../lib/user";
-import { UserInfo } from "../types/user";
+import Pokemons from "../src/components/pokemons";
+import { GetUserInfo } from "../src/lib/user";
+import { UserInfo } from "../src/types/user";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Meta from "../components/meta";
-import WithdrawModal from "../components/withdraw-modal";
-import Button from "../components/button";
+import Meta from "../src/components/meta";
+import WithdrawModal from "../src/components/withdraw-modal";
+import Button from "../src/components/button";
 import { HandRaisedIcon } from "@heroicons/react/24/outline";
 
 const Mypage = () => {
