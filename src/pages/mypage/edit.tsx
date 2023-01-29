@@ -1,17 +1,16 @@
-import Layout from "../../src/components/layout";
-import UserGuard from "../../src/guards/user-guard";
-import { useAuth } from "../../src/context/auth";
+import Layout from "../../components/layout";
+import UserGuard from "../../guards/user-guard";
+import { useAuth } from "../../context/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import React, { useEffect, useState } from "react";
-import InputField from "../../src/components/input-field";
-import Button from "../../src/components/button";
-import TextareaField from "../../src/components/textarea-field";
-import { GetUserInfo, updateUser } from "../../src/lib/user";
-import DoneModal from "../../src/components/done-modal";
-import Pokemons from "../../src/components/pokemons";
-import { UserInfo } from "../../src/types/user";
-import Meta from "../../src/components/meta";
-import router from "next/router";
+import InputField from "../../components/input-field";
+import Button from "../../components/button";
+import TextareaField from "../../components/textarea-field";
+import { GetUserInfo, updateUser } from "../../lib/user";
+import DoneModal from "../../components/done-modal";
+import Pokemons from "../../components/pokemons";
+import { UserInfo } from "../../types/user";
+import Meta from "../../components/meta";
 
 type Inputs = {
   name: string;
