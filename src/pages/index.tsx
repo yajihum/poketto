@@ -3,7 +3,7 @@ import Layout from "../components/layout/layout";
 import Link from "next/link";
 import { getJaRegions } from "../lib/pokemon";
 import Image from "next/image";
-import Meta from "../components/meta";
+import Meta from "../components/layout/meta";
 
 type Props = {
   regions: RegionType[];

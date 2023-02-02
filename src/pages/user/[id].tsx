@@ -9,7 +9,7 @@ import {
 import { GetUserInfo } from "../../lib/user";
 import { useRouter } from "next/router";
 import Layout from "../../components/layout/layout";
-import Meta from "../../components/meta";
+import Meta from "../../components/layout/meta";
 import Image from "next/image";
 
 const AllUserInfo = () => {

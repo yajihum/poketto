@@ -3,14 +3,14 @@ import Layout from "../components/layout/layout";
 import Link from "next/link";
 import { useAuth } from "../context/auth";
 import { useEffect, useState } from "react";
-import InputField from "../components/input-field";
+import InputField from "../components/field/input-field";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "../components/ui/button";
 import Pokemons from "../components/pokemons";
 import router from "next/router";
 import { GetPokeTypeArrayFromJson } from "../lib/pokemon";
 import PokeShareModal from "../components/module/modal/pokemon-share-modal";
-import Meta from "../components/meta";
+import Meta from "../components/layout/meta";
 import Image from "next/image";
 
 const Share = () => {

@@ -2,8 +2,8 @@ import * as Slider from "@radix-ui/react-slider";
 import { useRef } from "react";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.min.css";
-import Button from "./ui/button";
-import Modal from "./modal";
+import Button from "../ui/button";
+import Modal from "./modal/modal";
 
 type Props = {
   src: string;

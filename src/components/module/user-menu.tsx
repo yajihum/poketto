@@ -1,9 +1,9 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, ReactNode } from "react";
-import { useAuth } from "../context/auth";
-import { classNames } from "../lib/class-names";
-import { login, logout } from "../lib/auth";
-import MenuLink from "./menu-link";
+import { useAuth } from "../../context/auth";
+import { classNames } from "../../lib/class-names";
+import { login, logout } from "../../lib/auth";
+import MenuLink from "../ui/menu-link";
 import Image from "next/image";
 
 const links = [

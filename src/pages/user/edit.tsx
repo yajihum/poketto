@@ -3,14 +3,14 @@ import UserGuard from "../../guards/user-guard";
 import { useAuth } from "../../context/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
 import React, { useEffect, useState } from "react";
-import InputField from "../../components/input-field";
+import InputField from "../../components/field/input-field";
 import Button from "../../components/ui/button";
-import TextareaField from "../../components/textarea-field";
+import TextareaField from "../../components/field/textarea-field";
 import { GetUserInfo, updateUser } from "../../lib/user";
 import DoneModal from "../../components/module/modal/done-modal";
 import Pokemons from "../../components/pokemons";
 import { UserInfo } from "../../types/user";
-import Meta from "../../components/meta";
+import Meta from "../../components/layout/meta";
 
 type Inputs = {
   name: string;

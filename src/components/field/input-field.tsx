@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ReactNode } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { classNames } from "../lib/class-names";
+import { classNames } from "../../lib/class-names";
 import FieldGroup from "./field-group";
 
 type Props = {

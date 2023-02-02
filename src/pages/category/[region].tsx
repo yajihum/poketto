@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useAuth } from "../../context/auth";
 import Button from "../../components/ui/button";
 import DoneModal from "../../components/module/modal/done-modal";
-import Meta from "../../components/meta";
+import Meta from "../../components/layout/meta";
 
 type Props = {
   pokemons: Pokemon[];

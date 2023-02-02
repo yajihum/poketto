@@ -3,7 +3,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 import TextareaAutosize, {
   TextareaAutosizeProps,
 } from "react-textarea-autosize";
-import { classNames } from "../lib/class-names";
+import { classNames } from "../../lib/class-names";
 import FieldGroup from "./field-group";
 
 type Props = {

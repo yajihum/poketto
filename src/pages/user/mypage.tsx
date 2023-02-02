@@ -8,8 +8,8 @@ import { GetUserInfo } from "../../lib/user";
 import { UserInfo } from "../../types/user";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Meta from "../../components/meta";
-import WithdrawModal from "../../components/withdraw-modal";
+import Meta from "../../components/layout/meta";
+import WithdrawModal from "../../components/module/modal/withdraw-modal";
 import Button from "../../components/ui/button";
 import { HandRaisedIcon } from "@heroicons/react/24/outline";
 

@@ -1,4 +1,4 @@
-import Navigation from "./navigation";
+import Navigation from "../module/navigation";
 
 const name = "yajium";
 export const siteTitle = "Next.js Sample Website";

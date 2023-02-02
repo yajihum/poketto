@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Footer from "../footer";
-import Header from "../header";
+import Footer from "./footer";
+import Header from "./header";
 
 export const siteTitle = "Next.js Sample Website";
 

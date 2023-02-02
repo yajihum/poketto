@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/auth";
-import { login, logout } from "../lib/auth";
-import Button from "./ui/button";
+import { useAuth } from "../../context/auth";
+import { login, logout } from "../../lib/auth";
+import Button from "../ui/button";
 import UserMenu from "./user-menu";
 
 const Navigation = () => {

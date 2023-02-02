@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { updateUser } from "../../../lib/user";
 import { Pokemon, PokeType } from "../../../types/pokemon";
 import { arrayRemove, arrayUnion } from "firebase/firestore";
-import PokeHiddenInput from "../../pokemon-hidden-input";
+import PokeHiddenInput from "../../field/pokemon-hidden-input";
 import {
   ConverToPokemonArray,
   GetPokeTypeArrayFromJson,
