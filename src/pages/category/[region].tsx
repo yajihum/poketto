@@ -2,11 +2,11 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { getJaRegions, getPokemons } from "../../lib/pokemon";
 import { Pokemon, RegionType } from "../../types/pokemon";
 import Image from "next/image";
-import Layout from "../../components/layout";
+import Layout from "../../components/layout/layout";
 import { useState } from "react";
 import { useAuth } from "../../context/auth";
-import Button from "../../components/button";
-import DoneModal from "../../components/done-modal";
+import Button from "../../components/ui/button";
+import DoneModal from "../../components/module/modal/done-modal";
 import Meta from "../../components/meta";
 
 type Props = {
