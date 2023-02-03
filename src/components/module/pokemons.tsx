@@ -1,9 +1,9 @@
-import { PokeType } from "../types/pokemon";
+import { PokeType } from "../../types/pokemon";
 import Image from "next/image";
-import Button from "./ui/button";
+import Button from "../ui/button";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import DoneModal from "./module/modal/done-modal";
-import { GetGridNumByPokemonLength } from "../lib/pokemon";
+import DoneModal from "./modal/done-modal";
+import { GetGridNumByPokemonLength } from "../../lib/pokemon";
 
 type Props = {
   pokemons: PokeType[];

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { PokeType } from "../../../types/pokemon";
 import Button from "../../ui/button";
-import Pokemons from "../../pokemons";
+import Pokemons from "../pokemons";
 import { LineIcon, TwitterIcon } from "react-share";
 
 type Props = {

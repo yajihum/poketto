@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import InputField from "../components/field/input-field";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "../components/ui/button";
-import Pokemons from "../components/pokemons";
+import Pokemons from "../components/module/pokemons";
 import router from "next/router";
 import { GetPokeTypeArrayFromJson } from "../lib/pokemon";
 import PokeShareModal from "../components/module/modal/pokemon-share-modal";
