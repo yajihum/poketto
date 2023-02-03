@@ -8,6 +8,8 @@ import { useAuth } from "../../context/auth";
 import Button from "../../components/ui/button";
 import DoneModal from "../../components/module/modal/done-modal";
 import Meta from "../../components/layout/meta";
+import { Skeleton } from "@mui/material";
+import { ImageWithLoading } from "../../components/ui/imageWithLoading";
 
 type Props = {
   pokemons: Pokemon[];
@@ -40,7 +42,7 @@ const Region = ({ pokemons, regionName }: Props) => {
           <p className="my-2">すきなポケモンを選ぼう！</p>
           <p className="mt-6 mb-8">{regionName}</p>
         </div>
-        <div className="mx-9 sm:mx-7 mb-7 grid grid-cols-3 justify-items-center gap-3 sm:gap-2 rounded-3xl bg-white px-6 sm:px-3 py-7 font-dot shadow-2xl md:grid-cols-4 md:gap-4 md:py-10 lg:mx-10 lg:grid-cols-6 lg:gap-7 lg:py-10 lg:px-10">
+        <div className="mx-9 sm:mx-7 mb-7 grid grid-cols-3 justify-items-center gap-3 sm:gap-2 rounded-3xl bg-white bg-opacity-75 px-6 sm:px-3 py-7 font-dot shadow-2xl md:grid-cols-4 md:gap-4 md:py-10 lg:mx-10 lg:grid-cols-6 lg:gap-7 lg:py-10 lg:px-10">
           {pokemons.map(({ jaName, image, types, genus, name }) => (
             <div key={name}>
               {jaName && image && (
@@ -53,14 +55,14 @@ const Region = ({ pokemons, regionName }: Props) => {
                   className="block text-left transition duration-200 ease-in-out md:hover:opacity-30"
                 >
                   {image && (
-                    <Image
+                    <ImageWithLoading
                       src={image}
-                      height={100}
                       width={100}
-                      alt={`${jaName}の画像`}
-                    ></Image>
+                      height={100}
+                      alt={jaName}
+                    />
                   )}
-                  <p className="font-bold text-xs text-center md:text-xl">
+                  <p className="font-bold text-xs text-center md:text-left md:text-xl">
                     {jaName}
                   </p>
                   {types && (
