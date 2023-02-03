@@ -3,7 +3,7 @@ import UserGuard from "../../guards/user-guard";
 import Link from "next/link";
 import { useAuth } from "../../context/auth";
 import { useState } from "react";
-import Pokemons from "../../components/pokemons";
+import Pokemons from "../../components/module/pokemons";
 import { GetUserInfo } from "../../lib/user";
 import { UserInfo } from "../../types/user";
 import { useRouter } from "next/router";
@@ -71,7 +71,7 @@ const Mypage = () => {
                 </p>
               </div>
             )}
-            <div className="mt-20 mb-20 sm:mt-20 sm:mb-32">
+            <div className="mt-20 mb-20">
               {userInfo?.pokemons && userInfo.pokemons.length > 0 ? (
                 <Pokemons
                   pokemons={userInfo.pokemons}

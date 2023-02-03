@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Pokemons from "../../components/pokemons";
+import Pokemons from "../../components/module/pokemons";
 import {
   LineIcon,
   LineShareButton,

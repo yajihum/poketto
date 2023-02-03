@@ -8,7 +8,7 @@ import Button from "../../components/ui/button";
 import TextareaField from "../../components/field/textarea-field";
 import { GetUserInfo, updateUser } from "../../lib/user";
 import DoneModal from "../../components/module/modal/done-modal";
-import Pokemons from "../../components/pokemons";
+import Pokemons from "../../components/module/pokemons";
 import { UserInfo } from "../../types/user";
 import Meta from "../../components/layout/meta";
 
@@ -104,10 +104,10 @@ const Mypage = () => {
                   </p>
                 )}
               </div>
-              <div className="mt-32 flex justify-center">
+              <div className="mt-20 flex justify-center">
                 <Button
                   type="submit"
-                  className="mx-2 rounded-full px-3 py-2 text-center text-xl font-medium hover:text-black md:text-3xl"
+                  className="mx-2 rounded-full px-3 mb-10 text-center text-xl font-medium hover:text-teal-200 md:text-3xl"
                 >
                   ▽保存する
                 </Button>
