@@ -3,3 +3,31 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,800&display=swap");
+
+html,
+body,
+div,
+p {
+  margin: 0; /* 余分なマージンを消去 */
+  padding: 0; /* 余分なパディングを消去 */
+}
+
+html,
+body,
+div.background {
+  height: 100%; /* min-heightに対応していないブラウザ用 */
+}
+
+body {
+  @apply bg-gradient-to-r from-rose-400 to-orange-300;
+}
+
+div.background {
+  min-height: 100%; /* 最小の高さ */
+  width: 300px;
+  background: #efefef;
+}
+
+body > div.background {
+  height: auto; /* 要素を超えた分の背景が伸びないブラウザ用 */
+}

@@ -50,7 +50,7 @@ const DoneModal = ({
   }
 
   function backToMyPage() {
-    router.replace("/mypage");
+    router.replace("/user/mypage");
     closeModal();
   }
 

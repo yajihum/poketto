@@ -18,7 +18,7 @@ const Layout = ({ children, isRegion }: Props) => {
   return (
     <>
       <Header />
-      <div className="bg-gradient-to-r from-rose-400 to-orange-300 pb-20 pt-4 md:pb-32">
+      <div className="pt-4">
         <main className={`container mx-auto ${maxWidth} py-3 md:py-10`}>
           {children}
         </main>

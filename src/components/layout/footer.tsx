@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="p-6 text-center font-dot text-white bg-gradient-to-r from-rose-400 to-orange-300">
+    <footer className="bottom-0 pb-6 font-dot text-center text-white">
       <Link href="https://chiisanaumi.vercel.app/">&copy; yajium</Link>
     </footer>
   );

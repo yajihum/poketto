@@ -28,7 +28,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className="bg-gradient-to-r from-rose-400 to-orange-300 pt-8 pb-3 md:py-10">
+    <nav className="pt-8 pb-3 md:py-10">
       <div className="justify-center md:mx-10 lg:mx-32 xl:mx-44">
         <ul className="ml-10 flex flex-row font-dot font-medium text-white md:text-lg xl:text-2xl 2xl:text-3xl">
           <li className="hidden basis-1/3  md:flex md:basis-1/4 lg:basis-1/6">
