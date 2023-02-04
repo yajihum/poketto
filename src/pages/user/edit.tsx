@@ -11,14 +11,21 @@ import DoneModal from "../../components/module/modal/done-modal";
 import Pokemons from "../../components/module/pokemons";
 import { UserInfo } from "../../types/user";
 import Meta from "../../components/layout/meta";
+import { z } from "zod";
+import { customErrorMap } from "../../lib/zErrorMap";
+import ErrorMessage from "../../components/module/modal/errorMessage";
+import fixedNames from "../../lib/fixed-name";
 
-type Inputs = {
-  name: string;
-  comment: string;
-};
+const schema = z.object({
+  name: z.string({ errorMap: customErrorMap }).min(1),
+  comment: z.string({ errorMap: customErrorMap }).max(50).optional(),
+});
+
+type Inputs = z.infer<typeof schema>;
 
 const Mypage = () => {
   const user = useAuth();
+  const f = fixedNames;
 
   const {
     register,
@@ -29,25 +36,34 @@ const Mypage = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isDone, setIsDone] = useState(false);
+  const [error, setError] = useState<string | undefined>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    if (user?.id) {
-      updateUser(user?.id, {
-        name: data.name,
-        comment: data.comment,
-      })
-        .then(() => {
-          // 更新完了
-          setIsOpen(true);
-          setIsDone(true);
+    try {
+      const userData = schema.parse(data);
+      setError(undefined);
+
+      if (user?.id) {
+        updateUser(user?.id, {
+          name: userData.name,
+          comment: userData.comment,
         })
-        .catch((error) => {
-          // 更新失敗
-          setIsOpen(true);
-        });
+          .then(() => {
+            // 更新完了
+            setIsOpen(true);
+            setIsDone(true);
+          })
+          .catch((error) => {
+            // 更新失敗
+            setIsOpen(true);
+          });
+      }
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        console.log(err);
+        setError(err.issues[0].message);
+      }
     }
-    setIsOpen(false);
-    setIsDone(false);
   };
 
   let userInfo: UserInfo | null = null;
@@ -66,32 +82,22 @@ const Mypage = () => {
     <UserGuard>
       {(user) => (
         <Layout>
-          <Meta title={`${userInfo?.name}さんのページ編集するよ～～ん`} />
+          <Meta title={userInfo?.name + f.USER_PAGE_EDIT} />
           <div className="mx-6 mt-8 font-dot text-white md:mt-12">
+            {error && <ErrorMessage message={error} addMsg="名前は" />}
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
               <div className="mb-8 font-medium caret-orange-400">
                 <InputField
-                  label="名前"
-                  register={register("name", {
-                    required: "必須です",
-                    maxLength: {
-                      value: 20,
-                      message: "20文字以内にしてください",
-                    },
-                  })}
-                  error={errors.name?.message}
+                  label={f.LABEL_NAME}
+                  register={register("name")}
+                  placeholder={f.PLACE_NAME}
                   className="form-input mb-3 mt-1 block w-full rounded-md border-gray-300 text-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 ></InputField>
                 <TextareaField
-                  label="コメント"
-                  register={register("comment", {
-                    maxLength: {
-                      value: 500,
-                      message: "500文字以内にしてください",
-                    },
-                  })}
+                  label={f.LABEL_COMMENT}
+                  register={register("comment")}
                   error={errors.comment?.message}
-                  placeholder="コメントを入力"
+                  placeholder={f.PLACE_COMMENT}
                   className="form-input mt-4 block w-full resize-none rounded-md border-gray-300 text-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 ></TextareaField>
               </div>
@@ -100,16 +106,16 @@ const Mypage = () => {
                   <Pokemons pokemons={userInfo.pokemons} isEdit></Pokemons>
                 ) : (
                   <p className="mt-10 mb-20 text-lg font-medium md:mt-40 md:mb-52 md:text-3xl">
-                    すきなポケモンの登録はありません
+                    {f.NON_POKE}
                   </p>
                 )}
               </div>
               <div className="mt-20 flex justify-center">
                 <Button
                   type="submit"
-                  className="mx-2 rounded-full px-3 mb-10 text-center text-xl font-medium hover:text-teal-200 md:text-3xl"
+                  className="mx-2 mb-10 rounded-full px-3 text-center text-xl font-medium hover:text-teal-200 md:text-3xl"
                 >
-                  ▽保存する
+                  ▽{f.BTN_SAVE}
                 </Button>
                 <DoneModal
                   setIsOpen={setIsOpen}
