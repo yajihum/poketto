@@ -5,28 +5,30 @@ import { classNames } from "../../lib/class-names";
 import { login, logout } from "../../lib/auth";
 import MenuLink from "../ui/menu-link";
 import Image from "next/image";
+import fixedNames from "../../lib/fixed-name";
 
+const f = fixedNames;
 const links = [
   {
-    label: "ホームにいく",
+    label: f.BTN_GO_HOME,
     iconSrc: "/images/rioru.png",
     path: "/",
     isShow: true,
   },
   {
-    label: "地方をみる",
+    label: f.BTN_LOOK_UP_REGION,
     iconSrc: "/images/togepi.png",
     path: "/regions",
     isShow: true,
   },
   {
-    label: "マイページにいく",
+    label: f.BTN_GO_MYPAGE,
     iconSrc: "/images/yogirasu.png",
     path: "/user/mypage",
     isShow: false,
   },
   {
-    label: "シェアする",
+    label: f.BTN_SHARE,
     iconSrc: "/images/karanakushi.png",
     path: "/share",
     isShow: false,
@@ -112,7 +114,7 @@ const UserMenu = () => {
                   <button className="w-full" onClick={logout}>
                     <ListItem
                       iconSrc="/images/upa.png"
-                      label="ログアウトする"
+                      label={f.BTN_LOGOUT}
                       active={active}
                       isShow={user ? true : false}
                     ></ListItem>
@@ -126,7 +128,7 @@ const UserMenu = () => {
                   <button className="w-full" onClick={login}>
                     <ListItem
                       iconSrc="/images/rarutosu.png"
-                      label="ログインする"
+                      label={f.BTN_LOGIN}
                       active={active}
                       isShow={!user ? true : false}
                     ></ListItem>

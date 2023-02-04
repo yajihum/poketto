@@ -6,6 +6,7 @@ import { Dispatch, useEffect, useState } from "react";
 import { DeleteUser } from "../../../lib/user";
 import { useAuth } from "../../../context/auth";
 import UserGuard from "../../../guards/user-guard";
+import fixedNames from "../../../lib/fixed-name";
 
 type Props = {
   isOpen: boolean;
@@ -14,6 +15,7 @@ type Props = {
 
 const WithdrawModal = ({ isOpen, setIsOpen }: Props) => {
   const user = useAuth();
+  const f = fixedNames;
   const [open, setOpen] = useState(isOpen);
 
   const Close = () => {
@@ -47,11 +49,11 @@ const WithdrawModal = ({ isOpen, setIsOpen }: Props) => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title" className="font-dot font-bold">
-            {!errorMsg ? "アカウントを消しますか" : errorMsg}
+            {!errorMsg ? f.Q_USER_ACCOUNT_REMOVE : errorMsg}
           </DialogTitle>
           <DialogActions className="justify-center">
             <Button onClick={Close} className="font-dot">
-              戻る
+              {f.BTN_BACK}
             </Button>
             <Button
               type="button"
@@ -59,7 +61,7 @@ const WithdrawModal = ({ isOpen, setIsOpen }: Props) => {
               autoFocus
               className="font-dot"
             >
-              はい
+              {f.BTN_YES}
             </Button>
           </DialogActions>
         </Dialog>

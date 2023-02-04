@@ -2,11 +2,13 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/auth";
 import { login, logout } from "../../lib/auth";
+import fixedNames from "../../lib/fixed-name";
 import Button from "../ui/button";
 import UserMenu from "./user-menu";
 
 const Navigation = () => {
   const user = useAuth();
+  const f = fixedNames;
   const [waiting, setWaiting] = useState<boolean>(false);
 
   const singIn = () => {
@@ -33,18 +35,18 @@ const Navigation = () => {
         <ul className="ml-10 flex flex-row font-dot font-medium text-white md:text-lg xl:text-2xl 2xl:text-3xl">
           <li className="hidden basis-1/3  md:flex md:basis-1/4 lg:basis-1/6">
             <Link href="/" className=" hover:text-teal-200">
-              ▽ホームにいく
+              ▽{f.BTN_GO_HOME}
             </Link>
           </li>
           <li className="hidden basis-1/3 md:flex md:basis-1/4 lg:basis-1/6">
             <Link href="/regions" className="hover:text-teal-200">
-              ▽地方をみる
+              ▽{f.BTN_LOOK_UP_REGION}
             </Link>
           </li>
           {!user && (
             <li className="hidden basis-1/3 md:flex md:basis-1/4 lg:basis-1/6">
               <Link href="/share" className=" hover:text-teal-200">
-                ▽シェアする
+                ▽{f.BTN_SHARE}
               </Link>
             </li>
           )}
@@ -56,7 +58,7 @@ const Navigation = () => {
                 onClick={singIn}
                 className=" hover:text-teal-200"
               >
-                ▽ログイン
+                ▽{f.BTN_LOGIN}
               </Button>
             </li>
           )}
@@ -64,7 +66,7 @@ const Navigation = () => {
             // マイページ以外にいるとき
             <li className="hidden basis-1/3 md:flex md:basis-1/4 lg:basis-1/6">
               <Link href="/user/mypage" className=" hover:text-teal-200">
-                ▽マイページ
+                ▽{f.BTN_GO_MYPAGE}
               </Link>
             </li>
           )}
@@ -76,7 +78,7 @@ const Navigation = () => {
                 onClick={logout}
                 className=" hover:text-teal-200"
               >
-                ▽ログアウト
+                ▽{f.BTN_LOGOUT}
               </Button>
             </li>
           )}

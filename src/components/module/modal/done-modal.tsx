@@ -12,6 +12,7 @@ import {
   ConverToPokemonArray,
   GetPokeTypeArrayFromJson,
 } from "../../../lib/pokemon";
+import fixedNames from "../../../lib/fixed-name";
 
 type Props = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -35,6 +36,7 @@ const DoneModal = ({
   pokemon,
   isNewSelect,
 }: Props) => {
+  const f = fixedNames;
   const [isShow, setIsShow] = useState(isOpen);
   const [isSuccess, setIsSuccess] = useState(isDone);
   const [isNew, setIsNew] = useState(isNewSelect);
@@ -197,17 +199,15 @@ const DoneModal = ({
                 >
                   {isMyPage &&
                     !isPokeEdit &&
-                    (isSuccess
-                      ? "更新しました"
-                      : "更新に失敗しました。再度お試しください")}
-                  {isMyPage && isPokeEdit && "このポケモンを削除しますか？"}
-                  {!isMyPage && isNew && "このポケモンでよろしいですか"}
+                    (isSuccess ? f.UPDATE_SUCCESS : f.UPDATE_FAILED)}
+                  {isMyPage && isPokeEdit && f.Q_REMOVE_POKE}
+                  {!isMyPage && isNew && f.Q_SELECT_POKE}
                   {!isMyPage &&
                     !isNew &&
                     !isSuccess &&
                     !isPokeMax &&
-                    "既に登録されています"}
-                  {isPokeMax && !isNew && "既に6匹まで登録されています"}
+                    f.ERR_ALREADY_REGISTER}
+                  {isPokeMax && !isNew && f.ERR_AREADY_MAX}
                 </Dialog.Title>
                 <div className="mt-4">
                   {pokemon?.name && pokemon.image && (
@@ -229,7 +229,7 @@ const DoneModal = ({
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={backToMyPage}
                     >
-                      マイページへ戻る
+                      {f.BTN_BACK_MYPAGE}
                     </button>
                   )}
                   {((!isMyPage && isNew) || (isMyPage && isPokeEdit)) && (
@@ -246,13 +246,13 @@ const DoneModal = ({
                         onClick={closeModal}
                         className="mx-3 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
-                        戻る
+                        {f.BTN_BACK}
                       </button>
                       <button
                         type="submit"
                         className="mx-3 inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
-                        はい
+                        {f.BTN_YES}
                       </button>
                     </form>
                   )}
@@ -262,7 +262,7 @@ const DoneModal = ({
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      戻る
+                      {f.BTN_BACK}
                     </button>
                   )}
                 </div>

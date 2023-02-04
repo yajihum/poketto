@@ -4,6 +4,7 @@ import Button from "../ui/button";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import DoneModal from "./modal/done-modal";
 import { GetGridNumByPokemonLength } from "../../lib/pokemon";
+import fixedNames from "../../lib/fixed-name";
 
 type Props = {
   pokemons: PokeType[];
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
+  const f = fixedNames;
   const [isOpen, setIsOpen] = useState(false);
   const [removePoke, setRemovePoke] = useState<PokeType>();
   const [selectPoke, setSelectPoke] = useState<PokeType[]>(pokemons);
@@ -32,7 +34,7 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
     <>
       {!isShare && (
         <p className="py-3 text-lg font-medium sm:text-xl">
-          {isEdit ? "すきなポケモン(6匹まで選べます)" : "すきなポケモン"}
+          {isEdit ? f.FAVORITE_POKE_MAX : f.FAVORITE_POKE}
         </p>
       )}
       <div
@@ -49,7 +51,7 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
               >
                 <Image
                   src={image}
-                  alt="ポケモン"
+                  alt={name}
                   width={80}
                   height={80}
                   className="md:h-28 md:w-28"
@@ -60,7 +62,7 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
               <div key={name}>
                 <Image
                   src={image}
-                  alt="ポケモン"
+                  alt={name}
                   width={80}
                   height={80}
                   className="md:h-28 md:w-28"

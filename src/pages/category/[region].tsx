@@ -3,11 +3,11 @@ import { getJaRegions, getPokemons } from "../../lib/pokemon";
 import { Pokemon, RegionType } from "../../types/pokemon";
 import Layout from "../../components/layout/layout";
 import { useState } from "react";
-import { useAuth } from "../../context/auth";
 import Button from "../../components/ui/button";
 import DoneModal from "../../components/module/modal/done-modal";
 import Meta from "../../components/layout/meta";
 import ImageWithLoading from "../../components/ui/imageWithLoading";
+import fixedNames from "../../lib/fixed-name";
 
 type Props = {
   pokemons: Pokemon[];
@@ -20,7 +20,7 @@ type Inputs = {
 };
 
 const Region = ({ pokemons, regionName }: Props) => {
-  const user = useAuth();
+  const f = fixedNames;
 
   const [refJaName, setJaName] = useState("");
   const [refImage, setImage] = useState("");
@@ -35,12 +35,12 @@ const Region = ({ pokemons, regionName }: Props) => {
   return (
     <>
       <Layout isRegion>
-        <Meta title="すきなポケモンを選ぼう！" />
+        <Meta title={f.SELECT_POKE} />
         <div className="text-center font-dot text-2xl font-medium text-white md:text-4xl">
-          <p className="my-2">すきなポケモンを選ぼう！</p>
+          <p className="my-2">{f.SELECT_POKE}</p>
           <p className="mt-6 mb-8">{regionName}</p>
         </div>
-        <div className="mx-9 sm:mx-7 mb-7 grid grid-cols-3 justify-items-center gap-3 sm:gap-2 rounded-3xl bg-white bg-opacity-75 px-6 sm:px-3 py-7 font-dot shadow-2xl md:grid-cols-4 md:gap-4 md:py-10 lg:mx-10 lg:grid-cols-6 lg:gap-7 lg:py-10 lg:px-10">
+        <div className="mx-9 mb-7 grid grid-cols-3 justify-items-center gap-3 rounded-3xl bg-white bg-opacity-75 px-6 py-7 font-dot shadow-2xl sm:mx-7 sm:gap-2 sm:px-3 md:grid-cols-4 md:gap-4 md:py-10 lg:mx-10 lg:grid-cols-6 lg:gap-7 lg:py-10 lg:px-10">
           {pokemons.map(({ jaName, image, types, genus, name }) => (
             <div key={name}>
               {jaName && image && (
@@ -60,16 +60,16 @@ const Region = ({ pokemons, regionName }: Props) => {
                       alt={jaName}
                     />
                   )}
-                  <p className="font-bold text-xs text-center md:text-left md:text-xl">
+                  <p className="text-center text-xs font-bold md:text-left md:text-xl">
                     {jaName}
                   </p>
                   {types && (
-                    <p className="text-xs hidden sm:block md:text-sm">
+                    <p className="hidden text-xs sm:block md:text-sm">
                       {types.join(",")}
                     </p>
                   )}
                   {genus && (
-                    <p className="text-xs hidden sm:block md:text-sm">
+                    <p className="hidden text-xs sm:block md:text-sm">
                       {genus}
                     </p>
                   )}

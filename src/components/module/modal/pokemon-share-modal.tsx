@@ -5,6 +5,7 @@ import { PokeType } from "../../../types/pokemon";
 import Button from "../../ui/button";
 import Pokemons from "../pokemons";
 import { LineIcon, TwitterIcon } from "react-share";
+import fixedNames from "../../../lib/fixed-name";
 
 type Props = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 const PokeShareModal = ({ userName, pokemons, isOpen, setIsOpen }: Props) => {
+  const f = fixedNames;
   const [isShow, setIsShow] = useState(isOpen);
 
   const pokeNameArray: string[] = [];
@@ -23,7 +25,7 @@ const PokeShareModal = ({ userName, pokemons, isOpen, setIsOpen }: Props) => {
   });
 
   const pokemonStr: string = pokeNameArray.join("\n");
-  const dataText = `${userName}さんがすきなポケモンは...\n\n${pokemonStr}\n\n`;
+  const dataText = `${userName + f.USER_LIKE_POKE}\n${pokemonStr}\n\n`;
   const [url, setUrl] = useState("");
 
   useEffect(() => {
@@ -71,7 +73,7 @@ const PokeShareModal = ({ userName, pokemons, isOpen, setIsOpen }: Props) => {
                   as="h3"
                   className="mt-3 text-lg font-semibold leading-6 text-gray-900"
                 >
-                  <p>{userName}さんがすきなポケモン</p>
+                  <p>{userName + f.USER_POKE}</p>
                 </Dialog.Title>
                 <Dialog.Description>
                   <div className="mt-4">

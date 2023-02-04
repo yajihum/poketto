@@ -1,18 +1,18 @@
 import { deleteDoc, doc, updateDoc } from "@firebase/firestore";
 import { getDoc } from "firebase/firestore";
 import router from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../firebase/client";
 import { User, UserContextType, UserInfo } from "../types/user";
 import { ConverToPokemonArray } from "./pokemon";
 import {
   deleteUser,
-  EmailAuthProvider,
   getAuth,
   GoogleAuthProvider,
   reauthenticateWithCredential,
 } from "firebase/auth";
 import { login } from "./auth";
+import fixedNames from "./fixed-name";
 
 export const updateUser = (
   id: string | undefined,
@@ -64,6 +64,7 @@ type FailInfo = {
 export const DeleteUser = async (
   user: UserContextType
 ): Promise<FailInfo | undefined> => {
+  const f = fixedNames;
   const auth = getAuth();
   const currentUser = auth.currentUser;
 
@@ -81,14 +82,13 @@ export const DeleteUser = async (
                 deleteDoc(doc(db, "users", user.id));
               }
               router.push("/");
-              console.log("OK");
               return { isSuccess: true };
             })
             .catch((error) => {
               // An error ocurred
               return {
                 isSuccess: false,
-                errorMessage: "アカウントの削除に失敗しました",
+                errorMessage: f.ERR_ACCOUT_FAIL_REMOVE,
               };
             });
         })
@@ -96,7 +96,7 @@ export const DeleteUser = async (
           // An error ocurred
           return {
             isSuccess: false,
-            errorMessage: "何らかのエラーが発生しました",
+            errorMessage: f.ERR_SOMETHING,
           };
         });
     });

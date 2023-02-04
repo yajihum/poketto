@@ -11,18 +11,19 @@ import Image from "next/image";
 import Meta from "../../components/layout/meta";
 import WithdrawModal from "../../components/module/modal/withdraw-modal";
 import Button from "../../components/ui/button";
-import { HandRaisedIcon } from "@heroicons/react/24/outline";
+import fixedNames from "../../lib/fixed-name";
 
 const Mypage = () => {
   const user = useAuth();
+  const f = fixedNames;
   const router = useRouter();
   const actions = [
     {
-      label: "シェアする",
+      label: f.BTN_SHARE,
       link: `/user/${user?.id}`,
     },
     {
-      label: "編集する",
+      label: f.BTN_EDIT,
       link: "/user/edit",
     },
   ];
@@ -47,7 +48,7 @@ const Mypage = () => {
     <UserGuard>
       {(user) => (
         <Layout>
-          <Meta title={`${userInfo?.name}さんのページ`} />
+          <Meta title={userInfo?.name + f.USER_PAGE} />
           <div className={`mx-6 ${mb} text-center font-dot text-white md:mt-8`}>
             <div className="mb-16 font-medium">
               <p className="mt-6 text-3xl md:text-5xl">{userInfo?.name}</p>
@@ -58,8 +59,7 @@ const Mypage = () => {
                     key={action.label}
                     className="mx-2 flex items-center rounded-full px-3 py-2 text-xl font-medium hover:text-teal-200 md:text-2xl"
                   >
-                    <span>▽</span>
-                    <span>{action.label}</span>
+                    <span>▽{action.label}</span>
                   </Link>
                 ))}
               </div>
@@ -86,15 +86,12 @@ const Mypage = () => {
                     alt="poke"
                     className="mt-2 justify-self-center brightness-110"
                   />
-                  <p className="text-lg font-medium">
-                    すきなポケモンの登録はありません
-                  </p>
+                  <p className="text-lg font-medium">{f.NON_POKE}</p>
                 </div>
               )}
             </div>
             <div className="flex justify-center hover:text-teal-200">
-              <Button onClick={() => setIsOpen(true)}>お別れする</Button>
-              <HandRaisedIcon className="h-5 w-5 self-end" />
+              <Button onClick={() => setIsOpen(true)}>{f.BTN_BYE}</Button>
             </div>
           </div>
           <WithdrawModal isOpen={isOpen} setIsOpen={setIsOpen} />

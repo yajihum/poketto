@@ -11,8 +11,10 @@ import { useRouter } from "next/router";
 import Layout from "../../components/layout/layout";
 import Meta from "../../components/layout/meta";
 import Image from "next/image";
+import fixedNames from "../../lib/fixed-name";
 
 const AllUserInfo = () => {
+  const f = fixedNames;
   const router = useRouter();
   const { id } = router.query;
   const [urlOrigin, setUrlOrigin] = useState("");
@@ -40,20 +42,20 @@ const AllUserInfo = () => {
 
   return (
     <Layout>
-      <Meta title={`${userInfo.name}さんのページだよ～～ん`} />
+      <Meta title={userInfo.name + f.USER_PAGE} />
       <div className={`mx-6 ${mb} text-center font-dot text-white`}>
         <div className="mb-16 font-medium">
           <p className="mt-6 text-3xl md:text-5xl">{userInfo.name}</p>
           <div className="mt-10">
             <TwitterShareButton
-              title={`${userInfo.name}さんのすきなポケモンは...\n`}
+              title={userInfo.name + f.USER_LIKE_POKE}
               url={`${urlOrigin}/${id}`}
               className="mx-2"
             >
               <TwitterIcon size={50} round></TwitterIcon>
             </TwitterShareButton>
             <LineShareButton
-              title={`${userInfo?.name}さんのすきなポケモンは...\n`}
+              title={userInfo?.name + f.USER_LIKE_POKE}
               url={`${urlOrigin}/${id}`}
               className="mx-2"
             >
@@ -78,9 +80,7 @@ const AllUserInfo = () => {
                 alt="poke"
                 className="mt-2 justify-self-center brightness-110"
               />
-              <p className="text-lg font-medium">
-                すきなポケモンの登録はありません
-              </p>
+              <p className="text-lg font-medium">{f.NON_POKE}</p>
             </div>
           )}
         </div>
