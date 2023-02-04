@@ -15,6 +15,7 @@ import { z } from "zod";
 import { customErrorMap } from "../../lib/zErrorMap";
 import ErrorMessage from "../../components/module/modal/errorMessage";
 import fixedNames from "../../lib/fixed-name";
+import { CheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 const schema = z.object({
@@ -107,7 +108,7 @@ const Mypage = () => {
                   <Pokemons pokemons={userInfo.pokemons} isEdit></Pokemons>
                 ) : (
                   <div className="grid grid-rows-2">
-                    <p className="mt-10 mb-20 text-lg font-medium md:text-3xl">
+                    <p className="mt-10 mb-20 text-base font-medium md:text-3xl">
                       {f.NON_POKE}
                     </p>
                     <Image
@@ -120,11 +121,12 @@ const Mypage = () => {
                   </div>
                 )}
               </div>
-              <div className="mt-16 flex justify-center">
+              <div className="flex justify-center md:mt-12">
                 <Button
                   type="submit"
-                  className="mx-2 mb-10 rounded-full bg-gradient-to-r from-teal-400/75 to-emerald-200/75 px-4 py-3 text-center text-xl font-medium opacity-95 hover:text-teal-200 md:text-2xl"
+                  className="mx-2 mb-10 rounded-full border-2 border-teal-300 bg-white px-3 py-2 text-center text-xl font-medium text-teal-300 opacity-95 hover:text-teal-100 md:px-6 md:py-3 md:text-2xl"
                 >
+                  <CheckIcon className="inline-block h-8 w-8 align-top" />
                   {f.BTN_SAVE}
                 </Button>
                 <DoneModal

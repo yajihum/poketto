@@ -13,13 +13,14 @@ import PokeShareModal from "../components/module/modal/pokemon-share-modal";
 import Meta from "../components/layout/meta";
 import Image from "next/image";
 import fixedNames from "../lib/fixed-name";
+import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 
 const Share = () => {
   const f = fixedNames;
   const user = useAuth();
 
   if (user) {
-    router.replace("/mypage");
+    router.replace("/user/mypage");
   }
 
   const [userName, setUserName] = useState(f.NON_NAME);
@@ -107,7 +108,7 @@ const Share = () => {
                       <p className="self-end text-lg underline underline-offset-8 md:text-xl">
                         {f.NON_NAME}
                       </p>
-                      <p className="mt-4 text-lg font-medium md:text-3xl">
+                      <p className="mt-10 text-base font-medium md:text-2xl">
                         {f.NON_POKE}
                       </p>
                       <Image
@@ -119,15 +120,14 @@ const Share = () => {
                       />
                     </div>
                   </div>
-                  <div className="text-center md:mt-48">
-                    <div className="mt-20 md:mt-24">
-                      <Link
-                        href="/regions"
-                        className="text-2xl hover:text-teal-200 md:text-3xl"
-                      >
-                        <span>▽{f.BTN_LOOKUP_POKE}</span>
-                      </Link>
-                    </div>
+                  <div className="mb-10 mt-16 text-center md:my-32">
+                    <Link
+                      href="/regions"
+                      className="mx-2 mb-10 rounded-full border-2 border-teal-300 bg-white px-6 py-3 text-center text-lg font-medium text-teal-300 opacity-95 hover:text-teal-100 md:text-xl"
+                    >
+                      {f.BTN_LOOKUP_POKE}
+                      <ArrowUpRightIcon className="inline h-6 w-6" />
+                    </Link>
                   </div>
                 </>
               ))}

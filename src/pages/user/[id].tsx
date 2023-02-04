@@ -82,7 +82,7 @@ const AllUserInfo = () => {
                 alt="poke"
                 className="mt-2 justify-self-center brightness-110"
               />
-              <p className="text-lg font-medium">{f.NON_POKE}</p>
+              <p className="text-base font-medium md:text-lg">{f.NON_POKE}</p>
             </div>
           )}
         </div>

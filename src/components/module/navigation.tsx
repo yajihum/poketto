@@ -62,7 +62,7 @@ const Navigation = () => {
               </Button>
             </li>
           )}
-          {user && urlPath !== "/mypage" && (
+          {user && urlPath !== "/user/mypage" && (
             // マイページ以外にいるとき
             <li className="hidden basis-1/3 md:flex md:basis-1/4 lg:basis-1/6">
               <Link href="/user/mypage" className=" hover:text-teal-200">
@@ -70,7 +70,7 @@ const Navigation = () => {
               </Link>
             </li>
           )}
-          {user && urlPath === "/mypage" && (
+          {user && urlPath === "/user/mypage" && (
             // マイページにいるとき
             <li className="hidden basis-1/3 md:flex md:basis-1/4 lg:basis-1/6">
               <Button
