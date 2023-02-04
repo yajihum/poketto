@@ -36,7 +36,7 @@ const TextareaField = ({
       <TextareaAutosize
         id={register.name}
         className={classNames(
-          "w-full flex-1 rounded border px-2 py-1",
+          "w-full flex-1 rounded border px-2 py-1 text-center",
           className
         )}
         {...register}

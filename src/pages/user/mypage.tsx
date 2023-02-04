@@ -49,7 +49,9 @@ const Mypage = () => {
       {(user) => (
         <Layout>
           <Meta title={userInfo?.name + f.USER_PAGE} />
-          <div className={`mx-6 ${mb} text-center font-dot text-white md:mt-8`}>
+          <div
+            className={`mx-6 ${mb} rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white md:mt-8`}
+          >
             <div className="mb-16 font-medium">
               <p className="mt-6 text-3xl md:text-5xl">{userInfo?.name}</p>
               <div className="my-8 flex items-center justify-center">
@@ -57,7 +59,7 @@ const Mypage = () => {
                   <Link
                     href={action.link}
                     key={action.label}
-                    className="mx-2 flex items-center rounded-full px-3 py-2 text-xl font-medium hover:text-teal-200 md:text-2xl"
+                    className="mx-2 flex items-center rounded-full px-3 py-2 text-lg font-medium hover:text-teal-200 md:text-2xl"
                   >
                     <span>▽{action.label}</span>
                   </Link>
@@ -78,7 +80,7 @@ const Mypage = () => {
                   isEdit={false}
                 ></Pokemons>
               ) : (
-                <div className="grid grid-rows-2 gap-5 pb-16">
+                <div className="grid grid-rows-2 gap-5">
                   <Image
                     src="/images/pochama.png"
                     height={80}
@@ -86,11 +88,13 @@ const Mypage = () => {
                     alt="poke"
                     className="mt-2 justify-self-center brightness-110"
                   />
-                  <p className="text-lg font-medium">{f.NON_POKE}</p>
+                  <p className="text-base font-medium md:text-lg">
+                    {f.NON_POKE}
+                  </p>
                 </div>
               )}
             </div>
-            <div className="flex justify-center hover:text-teal-200">
+            <div className="mb-8 flex justify-center hover:text-teal-200">
               <Button onClick={() => setIsOpen(true)}>{f.BTN_BYE}</Button>
             </div>
           </div>

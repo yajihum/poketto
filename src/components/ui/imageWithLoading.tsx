@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { Skeleton } from "@mui/material";
 import { classNames } from "../../lib/class-names";
@@ -13,6 +13,11 @@ type Props = {
 
 const ImageWithLoading = ({ src, alt, width, height, className }: Props) => {
   const [loaded, setLoaded] = useState(false);
+
+  // 修正
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   return (
     <>

@@ -43,7 +43,9 @@ const AllUserInfo = () => {
   return (
     <Layout>
       <Meta title={userInfo.name + f.USER_PAGE} />
-      <div className={`mx-6 ${mb} text-center font-dot text-white`}>
+      <div
+        className={`mx-6 ${mb} rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white`}
+      >
         <div className="mb-16 font-medium">
           <p className="mt-6 text-3xl md:text-5xl">{userInfo.name}</p>
           <div className="mt-10">

@@ -64,7 +64,7 @@ const Share = () => {
       {!user && (
         <Layout>
           <Meta title={f.SHARE_POKE} />
-          <div className="mx-8 mt-10 mb-24 text-center font-dot text-white">
+          <div className="mx-8 mt-10 mb-24 rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white">
             {userPoke && userPoke.length > 0 && (
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-8 font-medium">

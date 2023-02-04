@@ -108,7 +108,7 @@ const DoneModal = ({
           .then(() => {
             // 更新完了
             if (pokemons.length === 6) {
-              router.replace("/mypage");
+              router.replace("/user/mypage");
             }
             closeModal();
           })
@@ -121,7 +121,7 @@ const DoneModal = ({
         })
           .then(() => {
             // 更新完了
-            router.replace("/mypage");
+            router.replace("/user/mypage");
           })
           .catch((error) => {
             // 更新失敗

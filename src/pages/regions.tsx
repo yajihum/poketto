@@ -18,7 +18,7 @@ const Regions = ({ regions }: Props) => {
         <div className="mb-8 text-center font-dot font-medium">
           <p className="text-2xl text-white md:text-4xl">{f.SELECT_REGION}</p>
         </div>
-        <div className="mx-7 mt-10 justify-items-center rounded-3xl bg-white px-7 py-7 font-dot text-rose-400 shadow-2xl md:my-20 md:px-16">
+        <div className="mx-7 mt-10 justify-items-center rounded-3xl bg-white bg-opacity-75 px-7 py-7 font-dot text-rose-400 shadow-2xl md:my-20 md:px-16">
           {regions.map(({ jaName, name }) => (
             <Link
               href={`/category/${name}`}

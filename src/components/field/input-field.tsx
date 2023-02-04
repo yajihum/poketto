@@ -32,7 +32,7 @@ const InputField = ({
     >
       <input
         id={register.name}
-        className={classNames("w-full flex-1 px-2 py-2", className)}
+        className={classNames("w-full flex-1 px-2 py-2 text-center", className)}
         {...register}
         {...props}
       ></input>

@@ -15,6 +15,7 @@ import { z } from "zod";
 import { customErrorMap } from "../../lib/zErrorMap";
 import ErrorMessage from "../../components/module/modal/errorMessage";
 import fixedNames from "../../lib/fixed-name";
+import Image from "next/image";
 
 const schema = z.object({
   name: z.string({ errorMap: customErrorMap }).min(1),
@@ -83,7 +84,7 @@ const Mypage = () => {
       {(user) => (
         <Layout>
           <Meta title={userInfo?.name + f.USER_PAGE_EDIT} />
-          <div className="mx-6 mt-8 font-dot text-white md:mt-12">
+          <div className="mx-5 mt-4 rounded-3xl bg-white bg-opacity-20 px-8 py-4 font-dot text-white md:mx-0">
             {error && <ErrorMessage message={error} addMsg="名前は" />}
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
               <div className="mb-8 font-medium caret-orange-400">
@@ -91,31 +92,40 @@ const Mypage = () => {
                   label={f.LABEL_NAME}
                   register={register("name")}
                   placeholder={f.PLACE_NAME}
-                  className="form-input mb-3 mt-1 block w-full rounded-md border-gray-300 text-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="form-input mb-3 mt-1 block w-full rounded-md text-black shadow-sm outline outline-offset-0 outline-teal-100 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 ></InputField>
                 <TextareaField
                   label={f.LABEL_COMMENT}
                   register={register("comment")}
                   error={errors.comment?.message}
                   placeholder={f.PLACE_COMMENT}
-                  className="form-input mt-4 block w-full resize-none rounded-md border-gray-300 text-black shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  className="form-input mt-4 block w-full resize-none rounded-md text-black shadow-sm outline outline-offset-0 outline-teal-100 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 ></TextareaField>
               </div>
               <div className="text-center font-dot text-white">
                 {userInfo?.pokemons && userInfo.pokemons.length > 0 ? (
                   <Pokemons pokemons={userInfo.pokemons} isEdit></Pokemons>
                 ) : (
-                  <p className="mt-10 mb-20 text-lg font-medium md:mt-40 md:mb-52 md:text-3xl">
-                    {f.NON_POKE}
-                  </p>
+                  <div className="grid grid-rows-2">
+                    <p className="mt-10 mb-20 text-lg font-medium md:text-3xl">
+                      {f.NON_POKE}
+                    </p>
+                    <Image
+                      src="/images/pochama.png"
+                      height={80}
+                      width={80}
+                      alt="poke"
+                      className="justify-self-center brightness-110"
+                    />
+                  </div>
                 )}
               </div>
-              <div className="mt-20 flex justify-center">
+              <div className="mt-16 flex justify-center">
                 <Button
                   type="submit"
-                  className="mx-2 mb-10 rounded-full px-3 text-center text-xl font-medium hover:text-teal-200 md:text-3xl"
+                  className="mx-2 mb-10 rounded-full bg-gradient-to-r from-teal-400/75 to-emerald-200/75 px-4 py-3 text-center text-xl font-medium opacity-95 hover:text-teal-200 md:text-2xl"
                 >
-                  ▽{f.BTN_SAVE}
+                  {f.BTN_SAVE}
                 </Button>
                 <DoneModal
                   setIsOpen={setIsOpen}

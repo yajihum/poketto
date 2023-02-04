@@ -25,7 +25,7 @@ const ErrorMessage = ({ message, addMsg }: Props) => {
   return (
     <>
       {data && (
-        <p className="text-center text-lg font-semibold text-sky-600">
+        <p className="text-center text-sm font-semibold text-teal-500 md:text-lg">
           {data.addMsg ? data.addMsg + data.message : data.message}
         </p>
       )}
