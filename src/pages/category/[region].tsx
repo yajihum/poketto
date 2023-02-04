@@ -1,15 +1,13 @@
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { getJaRegions, getPokemons } from "../../lib/pokemon";
 import { Pokemon, RegionType } from "../../types/pokemon";
-import Image from "next/image";
 import Layout from "../../components/layout/layout";
 import { useState } from "react";
 import { useAuth } from "../../context/auth";
 import Button from "../../components/ui/button";
 import DoneModal from "../../components/module/modal/done-modal";
 import Meta from "../../components/layout/meta";
-import { Skeleton } from "@mui/material";
-import { ImageWithLoading } from "../../components/ui/imageWithLoading";
+import ImageWithLoading from "../../components/ui/imageWithLoading";
 
 type Props = {
   pokemons: Pokemon[];
