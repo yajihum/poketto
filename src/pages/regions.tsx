@@ -1,9 +1,9 @@
-import { RegionType } from "../types/pokemon";
+import { RegionType } from "../types/graphql_pokemon";
 import Layout from "../components/layout/layout";
 import Link from "next/link";
-import { getJaRegions } from "../lib/pokemon";
 import Meta from "../components/layout/meta";
 import fixedNames from "../lib/fixed-name";
+import { getResions } from "../lib/graphql_pokemon";
 
 type Props = {
   regions: RegionType[];
@@ -11,6 +11,7 @@ type Props = {
 
 const Regions = ({ regions }: Props) => {
   const f = fixedNames;
+  console.log(regions);
   return (
     <>
       <Layout>
@@ -38,8 +39,8 @@ const Regions = ({ regions }: Props) => {
 
 export default Regions;
 
-export const getStaticProps = async () => {
-  const regions = await getJaRegions();
+export const getStaticProps = () => {
+  const regions = getResions();
   return {
     props: { regions },
   };
