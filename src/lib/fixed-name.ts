@@ -17,7 +17,7 @@ const fixedNames = {
   BTN_BYE: "お別れする😭",
   BTN_YES: "はい",
   BTN_BACK: "戻る",
-  NON_NAME: "ナンジャモさん",
+  NON_NAME: "サトシさん",
   LABEL_NAME: "名前",
   LABEL_COMMENT: "コメント",
   PLACE_NAME: "名前を入力",

@@ -40,7 +40,7 @@ const Region = ({ pokemons, regionName }: Props) => {
           <p className="my-2">{f.SELECT_POKE}</p>
           <p className="mt-6 mb-8">{regionName}</p>
         </div>
-        <div className="mx-9 mb-7 grid grid-cols-3 justify-items-center gap-3 rounded-3xl bg-white bg-opacity-75 px-6 py-7 font-dot shadow-2xl sm:mx-7 sm:gap-2 sm:px-3 md:grid-cols-4 md:gap-4 md:py-10 lg:mx-10 lg:grid-cols-6 lg:gap-7 lg:py-10 lg:px-10">
+        <div className="mx-9 mb-7 grid grid-cols-3 justify-items-center gap-3 rounded-3xl bg-white px-6 py-7 font-dot shadow-2xl sm:mx-7 sm:gap-2 sm:px-3 md:grid-cols-4 md:gap-4 md:py-10 lg:mx-10 lg:grid-cols-6 lg:gap-7 lg:py-10 lg:px-10">
           {pokemons.map(({ jaName, image, types, genus, name }) => (
             <div key={name}>
               {jaName && image && (

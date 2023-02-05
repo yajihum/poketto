@@ -38,7 +38,7 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
         </p>
       )}
       <div
-        className={`grid grid-cols-${gridNum} items-center justify-items-center gap-2 rounded-xl bg-white px-2 py-2 text-black outline outline-offset-0 outline-teal-100 sm:gap-6 sm:rounded-3xl sm:px-10 sm:pt-3 sm:pb-5`}
+        className={`grid grid-cols-${gridNum} mb-10 items-center justify-items-center gap-2 rounded-xl bg-white px-2 pb-3 text-black outline outline-offset-0 outline-teal-100 sm:gap-6 sm:rounded-3xl sm:px-10`}
       >
         {selectPoke.map(({ name, image }) => (
           <div key={name}>
@@ -52,8 +52,8 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
                 <Image
                   src={image}
                   alt={name}
-                  width={80}
-                  height={80}
+                  width={70}
+                  height={70}
                   className="md:h-28 md:w-28"
                 ></Image>
                 <p className="text-xs font-semibold sm:text-lg">{name}</p>
@@ -63,8 +63,8 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
                 <Image
                   src={image}
                   alt={name}
-                  width={80}
-                  height={80}
+                  width={70}
+                  height={70}
                   className="md:h-28 md:w-28"
                 ></Image>
                 <p className="text-xs font-semibold sm:text-lg">{name}</p>

@@ -53,7 +53,7 @@ const Mypage = () => {
             className={`mx-6 ${mb} rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white md:mt-8`}
           >
             <div className="mb-16 font-medium">
-              <p className="mt-6 text-3xl md:text-5xl">{userInfo?.name}</p>
+              <p className="mt-6 text-xl md:text-3xl">{userInfo?.name}</p>
               <div className="my-8 flex items-center justify-center">
                 {actions.map((action) => (
                   <Link
@@ -68,12 +68,12 @@ const Mypage = () => {
             </div>
             {userInfo?.comment && (
               <div className="">
-                <p className="whitespace-pre-line text-2xl italic md:text-3xl">
+                <p className="whitespace-pre-line text-lg italic md:text-xl">
                   {userInfo?.comment}
                 </p>
               </div>
             )}
-            <div className="mt-20 mb-20">
+            <div className="my-6">
               {userInfo?.pokemons && userInfo.pokemons.length > 0 ? (
                 <Pokemons
                   pokemons={userInfo.pokemons}

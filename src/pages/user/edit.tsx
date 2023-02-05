@@ -84,7 +84,7 @@ const Mypage = () => {
       {(user) => (
         <Layout>
           <Meta title={userInfo?.name + f.USER_PAGE_EDIT} />
-          <div className="mx-5 mt-4 rounded-3xl bg-white bg-opacity-20 px-8 py-4 font-dot text-white md:mx-0">
+          <div className="mx-5 mt-4 rounded-3xl bg-white bg-opacity-20 px-8 py-2 font-dot text-white md:mx-0">
             {error && <ErrorMessage message={error} addMsg="名前は" />}
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
               <div className="mx-4 mb-8 font-medium caret-orange-400">
