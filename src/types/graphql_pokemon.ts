@@ -17,7 +17,34 @@ export type Pokemon = {
   genus: string; // 分類(たねぽけもんとか)
 };
 
-export type PokeType = {
-  name: string;
-  image: string;
+export type GraphPoke = {
+  pokemon_v2_pokemonspecy: {
+    name: string;
+    id: number;
+    pokemon_v2_pokemonspecies: [
+      {
+        pokemon_v2_pokemonspeciesnames: [
+          {
+            genus?: string;
+            name?: string;
+          }
+        ];
+      }
+    ];
+    pokemon_v2_pokemons: [
+      {
+        pokemon_v2_pokemontypes: Types[];
+      }
+    ];
+  };
+};
+
+export type Types = {
+  pokemon_v2_type: {
+    pokemon_v2_typenames: [
+      {
+        name: string;
+      }
+    ];
+  };
 };
