@@ -60,10 +60,9 @@ const Mypage = () => {
             setIsOpen(true);
           });
       }
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        console.log(err);
-        setError(err.issues[0].message);
+    } catch (e) {
+      if (e instanceof z.ZodError) {
+        setError(e.issues[0].message);
       }
     }
   };
