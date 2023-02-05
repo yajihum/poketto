@@ -85,7 +85,7 @@ const PokeShareModal = ({ userName, pokemons, isOpen, setIsOpen }: Props) => {
                   </div>
                 </Dialog.Description>
                 <div className="mt-10 text-white">
-                  <Button className="mx-4">
+                  <Button className="mx-4 opacity-75">
                     <Link
                       href={`https://twitter.com/intent/tweet?url=${url}&text=${encodeURIComponent(
                         dataText
@@ -96,7 +96,7 @@ const PokeShareModal = ({ userName, pokemons, isOpen, setIsOpen }: Props) => {
                       <TwitterIcon size={50} round></TwitterIcon>
                     </Link>
                   </Button>
-                  <Button className="mx-4">
+                  <Button className="mx-4 opacity-75">
                     <Link
                       href={`https://social-plugins.line.me/lineit/share?text=${encodeURIComponent(
                         dataText

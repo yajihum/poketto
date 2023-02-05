@@ -52,14 +52,14 @@ const AllUserInfo = () => {
             <TwitterShareButton
               title={userInfo.name + f.USER_LIKE_POKE}
               url={`${urlOrigin}/${id}`}
-              className="mx-2"
+              className="mx-2 opacity-75"
             >
               <TwitterIcon size={50} round></TwitterIcon>
             </TwitterShareButton>
             <LineShareButton
               title={userInfo?.name + f.USER_LIKE_POKE}
               url={`${urlOrigin}/${id}`}
-              className="mx-2"
+              className="mx-2 opacity-75"
             >
               <LineIcon size={50} round></LineIcon>
             </LineShareButton>
