@@ -6,12 +6,15 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from "react-share";
-import { GetUserInfo } from "../../lib/user";
+import { GetUserInfo } from "../../lib/module/user";
 import { useRouter } from "next/router";
 import Layout from "../../components/layout/layout";
 import Meta from "../../components/layout/meta";
 import Image from "next/image";
 import fixedNames from "../../lib/fixed-name";
+import { LoggedinUserInfo, LoggedinUserSchema } from "../../zod/schema";
+import { ZodError } from "zod";
+import { UserInfo } from "../../types/user";
 
 const AllUserInfo = () => {
   const f = fixedNames;
@@ -20,13 +23,33 @@ const AllUserInfo = () => {
   const [urlOrigin, setUrlOrigin] = useState("");
 
   const [userId, setId] = useState("");
+  const [user, setUser] = useState<LoggedinUserInfo>();
+
+  const getUserInfo = async (
+    id: string
+  ): Promise<LoggedinUserInfo | undefined> => {
+    const data = fetch("/api/user/loggedin/info").then((d) => {
+      try {
+        return LoggedinUserSchema.parse(d);
+      } catch (e) {
+        if (e instanceof ZodError) {
+          throw new Error(e.issues[0].message);
+        }
+      }
+    });
+    if (!data) return undefined;
+    return await data;
+  };
 
   useEffect(() => {
     // idがqueryで利用可能になったら処理される
     if (router.asPath !== router.route) {
       setId(String(router.query.id));
     }
-  }, [router]);
+    if (userId) {
+      getUserInfo(userId).then(setUser);
+    }
+  }, [router, userId]);
 
   const userInfo = GetUserInfo(userId);
 
