@@ -2,7 +2,7 @@ import Layout from "../../components/layout/layout";
 import UserGuard from "../../guards/user-guard";
 import { useAuth } from "../../context/auth";
 import { useForm, SubmitHandler } from "react-hook-form";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import InputField from "../../components/field/input-field";
 import Button from "../../components/ui/button";
 import TextareaField from "../../components/field/textarea-field";
@@ -13,17 +13,17 @@ import { UserInfo } from "../../types/user";
 import Meta from "../../components/layout/meta";
 import { z } from "zod";
 import { customErrorMap } from "../../lib/zErrorMap";
-import ErrorMessage from "../../components/module/modal/errorMessage";
 import fixedNames from "../../lib/fixed-name";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
+const InputSchema = z.object({
   name: z.string({ errorMap: customErrorMap }).min(1),
   comment: z.string({ errorMap: customErrorMap }).max(50).optional(),
 });
 
-type Inputs = z.infer<typeof schema>;
+type Inputs = z.infer<typeof InputSchema>;
 
 const Mypage = () => {
   const user = useAuth();
@@ -34,36 +34,29 @@ const Mypage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    resolver: zodResolver(InputSchema),
+  });
 
   const [isOpen, setIsOpen] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  const [error, setError] = useState<string | undefined>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    try {
-      const userData = schema.parse(data);
-      setError(undefined);
-
-      if (user?.id) {
-        updateUser(user?.id, {
-          name: userData.name,
-          comment: userData.comment,
+    if (user?.id) {
+      updateUser(user?.id, {
+        name: data.name,
+        comment: data.comment,
+      })
+        .then(() => {
+          // 更新完了
+          setIsOpen(true);
+          setIsDone(true);
         })
-          .then(() => {
-            // 更新完了
-            setIsOpen(true);
-            setIsDone(true);
-          })
-          .catch((error) => {
-            // 更新失敗
-            setIsOpen(true);
-          });
-      }
-    } catch (e) {
-      if (e instanceof z.ZodError) {
-        setError(e.issues[0].message);
-      }
+        .catch((e) => {
+          // 更新失敗
+          setIsOpen(true);
+          throw new Error("更新処理の失敗", e);
+        });
     }
   };
 
@@ -85,7 +78,6 @@ const Mypage = () => {
         <Layout>
           <Meta title={userInfo?.name + f.USER_PAGE_EDIT} />
           <div className="mx-5 mt-4 rounded-3xl bg-white bg-opacity-20 px-8 py-2 font-dot text-white md:mx-0">
-            {error && <ErrorMessage message={error} addMsg="名前は" />}
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
               <div className="mx-4 mb-8 font-medium caret-orange-400">
                 <InputField
