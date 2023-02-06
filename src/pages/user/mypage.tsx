@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAuth } from "../../context/auth";
 import { useState } from "react";
 import Pokemons from "../../components/module/pokemons";
-import { GetUserInfo } from "../../lib/user";
+import { GetUserInfo } from "../../lib/module/user";
 import { UserInfo } from "../../types/user";
 import { useRouter } from "next/router";
 import Image from "next/image";

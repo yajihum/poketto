@@ -16,8 +16,8 @@ export type PrivateData = {
 
 export type UserInfo = {
   name: string;
-  comment: string;
-  pokemons: PokeType[];
+  comment?: string;
+  pokemons?: PokeType[];
 };
 
 export type UserContextType = User | null | undefined;
