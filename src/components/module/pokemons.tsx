@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "../ui/button";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import DoneModal from "./modal/done-modal";
-import { GetGridNumByPokemonLength } from "../../lib/pokemon";
+import { GetGridNumByPokemonLength } from "../../lib/module/pokemon";
 import fixedNames from "../../lib/fixed-name";
 
 type Props = {

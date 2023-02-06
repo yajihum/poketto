@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import InputField from "../../components/field/input-field";
 import Button from "../../components/ui/button";
 import TextareaField from "../../components/field/textarea-field";
-import { GetUserInfo, updateUser } from "../../lib/user";
+import { GetUserInfo, updateUser } from "../../lib/module/user";
 import DoneModal from "../../components/module/modal/done-modal";
 import Pokemons from "../../components/module/pokemons";
 import { UserInfo } from "../../types/user";

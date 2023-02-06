@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "../components/ui/button";
 import Pokemons from "../components/module/pokemons";
 import router from "next/router";
-import { GetPokeTypeArrayFromJson } from "../lib/pokemon";
+import { GetPokeTypeArrayFromJson } from "../lib/module/pokemon";
 import PokeShareModal from "../components/module/modal/pokemon-share-modal";
 import Meta from "../components/layout/meta";
 import Image from "next/image";

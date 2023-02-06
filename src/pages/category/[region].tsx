@@ -1,5 +1,5 @@
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { getJaRegions, getPokemons } from "../../lib/pokemon";
+import { getJaRegions, getPokemons } from "../../lib/module/pokemon";
 import { Pokemon, RegionType } from "../../types/pokemon";
 import Layout from "../../components/layout/layout";
 import { useState } from "react";

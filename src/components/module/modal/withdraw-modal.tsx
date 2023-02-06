@@ -3,7 +3,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Dispatch, useEffect, useState } from "react";
-import { DeleteUser } from "../../../lib/user";
+import { DeleteUser } from "../../../lib/module/user";
 import { useAuth } from "../../../context/auth";
 import UserGuard from "../../../guards/user-guard";
 import fixedNames from "../../../lib/fixed-name";

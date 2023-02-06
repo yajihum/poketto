@@ -4,14 +4,14 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useAuth } from "../../../context/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { updateUser } from "../../../lib/user";
+import { updateUser } from "../../../lib/module/user";
 import { Pokemon, PokeType } from "../../../types/pokemon";
 import { arrayRemove, arrayUnion } from "firebase/firestore";
 import PokeHiddenInput from "../../field/pokemon-hidden-input";
 import {
   ConverToPokemonArray,
   GetPokeTypeArrayFromJson,
-} from "../../../lib/pokemon";
+} from "../../../lib/module/pokemon";
 import fixedNames from "../../../lib/fixed-name";
 
 type Props = {
