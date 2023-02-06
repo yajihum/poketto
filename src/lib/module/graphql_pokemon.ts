@@ -1,7 +1,7 @@
 import { GraphQLClient, gql } from "graphql-request";
 import { z } from "zod";
-import { GraphPoke, RegionType, Types } from "../types/graphql_pokemon";
-import { endpoint, pokeQuery, regionQuery } from "./constants";
+import { GraphPoke, RegionType, Types } from "../../types/graphql_pokemon";
+import { endpoint, pokeQuery, regionQuery } from "../constants";
 
 const regionSchema = z.object({
   name: z.string(),

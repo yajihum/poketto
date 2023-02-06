@@ -2,8 +2,8 @@ import { deleteDoc, doc, updateDoc } from "@firebase/firestore";
 import { getDoc } from "firebase/firestore";
 import router from "next/router";
 import { useEffect, useState } from "react";
-import { db } from "../firebase/client";
-import { User, UserContextType, UserInfo } from "../types/user";
+import { db } from "../../firebase/client";
+import { User, UserContextType, UserInfo } from "../../types/user";
 import { ConverToPokemonArray } from "./pokemon";
 import {
   deleteUser,
@@ -11,8 +11,9 @@ import {
   GoogleAuthProvider,
   reauthenticateWithCredential,
 } from "firebase/auth";
-import { login } from "./auth";
-import fixedNames from "./fixed-name";
+import { login } from "../auth";
+import fixedNames from "../fixed-name";
+import { JSON } from "../../types/APIResponse";
 
 export const updateUser = (
   id: string | undefined,
@@ -22,8 +23,26 @@ export const updateUser = (
   return updateDoc(ref, data);
 };
 
+export const fetchUserInfo = async (
+  userId: string
+): Promise<JSON | undefined> => {
+  if (userId) {
+    const docRef = doc(db, "users", userId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return {
+        name: docSnap.data().name,
+        comment: docSnap.data().comment,
+        pokemons: ConverToPokemonArray(docSnap.data().pokemons),
+      };
+    }
+  }
+  return undefined;
+};
+
 export const GetUserInfo = (userId: string | undefined) => {
-  async function fetchUserInfo(): Promise<UserInfo> {
+  async function fetchUserInfo(): Promise<UserInfo | null> {
     if (userId) {
       const docRef = doc(db, "users", userId);
       const docSnap = await getDoc(docRef);

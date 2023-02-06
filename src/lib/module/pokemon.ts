@@ -1,5 +1,5 @@
 import { FieldValues } from "react-hook-form/dist/types";
-import { Pokemon, NameType, RegionType, PokeType } from "../types/pokemon";
+import { Pokemon, NameType, RegionType, PokeType } from "../../types/pokemon";
 
 /**
  * 地方の情報を取得
