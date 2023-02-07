@@ -13,7 +13,7 @@ import Meta from "../../components/layout/meta";
 import Image from "next/image";
 import fixedNames from "../../lib/fixed-name";
 import { LoggedinUserInfo } from "../../zod/schema";
-import { getUserInfo } from "../../util/getUserInfo";
+import { getUserInfo } from "../../util/user/getUserInfo";
 
 const AllUserInfo = () => {
   const f = fixedNames;
