@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Pokemons from "../../components/module/pokemons";
 import {
   LineIcon,
@@ -12,9 +12,8 @@ import Layout from "../../components/layout/layout";
 import Meta from "../../components/layout/meta";
 import Image from "next/image";
 import fixedNames from "../../lib/fixed-name";
-import { LoggedinUserInfo, LoggedinUserSchema } from "../../zod/schema";
-import { ZodError } from "zod";
-import { UserInfo } from "../../types/user";
+import { LoggedinUserInfo } from "../../zod/schema";
+import { getUserInfo } from "../../util/getUserInfo";
 
 const AllUserInfo = () => {
   const f = fixedNames;
@@ -25,27 +24,12 @@ const AllUserInfo = () => {
   const [userId, setId] = useState("");
   const [user, setUser] = useState<LoggedinUserInfo>();
 
-  const getUserInfo = async (
-    id: string
-  ): Promise<LoggedinUserInfo | undefined> => {
-    const data = fetch("/api/user/loggedin/info").then((d) => {
-      try {
-        return LoggedinUserSchema.parse(d);
-      } catch (e) {
-        if (e instanceof ZodError) {
-          throw new Error(e.issues[0].message);
-        }
-      }
-    });
-    if (!data) return undefined;
-    return await data;
-  };
-
   useEffect(() => {
     // idがqueryで利用可能になったら処理される
     if (router.asPath !== router.route) {
       setId(String(router.query.id));
     }
+    // APIからユーザー情報を取得
     if (userId) {
       getUserInfo(userId).then(setUser);
     }
@@ -53,21 +37,18 @@ const AllUserInfo = () => {
 
   const userInfo = GetUserInfo(userId);
 
-  useEffect(() => {
+  useMemo(() => {
     const uri = new URL(window.location.href);
     setUrlOrigin(uri.origin);
   }, []);
 
   if (!userInfo) return null;
 
-  const mb =
-    userInfo?.pokemons && userInfo.pokemons.length > 0 ? "mb-36" : "mb-42";
-
   return (
     <Layout>
       <Meta title={userInfo.name + f.USER_PAGE} />
       <div
-        className={`mx-6 ${mb} rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white`}
+        className={`mx-6 rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white`}
       >
         <div className="mb-16 font-medium">
           <p className="mt-6 text-3xl md:text-5xl">{userInfo.name}</p>
