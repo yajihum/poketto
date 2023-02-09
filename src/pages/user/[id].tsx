@@ -35,8 +35,6 @@ const AllUserInfo = () => {
     }
   }, [router, userId]);
 
-  //const userInfo = GetUserInfo(userId);
-
   useEffect(() => {
     const uri = new URL(window.location.href);
     setUrlOrigin(uri.origin);

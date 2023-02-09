@@ -2,11 +2,11 @@ import type { NextApiResponse } from "next";
 import {
   APIResponse,
   NextApiRequestWithBody,
-} from "../../../../types/APIResponse";
-import methodHandler from "../../../../util/methodHandler";
-import fetchResponse from "../../../../util/fetchResponse";
-import { fetchUserInfo } from "../../../../lib/module/user";
-import errorHandler from "../../../../util/errorHandler";
+} from "../../../types/APIResponse";
+import methodHandler from "../../../util/methodHandler";
+import fetchResponse from "../../../util/fetchResponse";
+import { fetchUserInfo } from "../../../lib/module/user";
+import errorHandler from "../../../util/errorHandler";
 
 const handler = (
   req: NextApiRequestWithBody,
