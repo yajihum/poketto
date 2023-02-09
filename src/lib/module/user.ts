@@ -1,9 +1,8 @@
 import { deleteDoc, doc, updateDoc } from "@firebase/firestore";
 import { getDoc } from "firebase/firestore";
 import router from "next/router";
-import { useEffect, useState } from "react";
 import { db } from "../../firebase/client";
-import { User, UserContextType, UserInfo } from "../../types/user";
+import { User, UserContextType } from "../../types/user";
 import { ConverToPokemonArray } from "./pokemon";
 import {
   deleteUser,
@@ -41,48 +40,7 @@ export const fetchUserInfo = async (
   return undefined;
 };
 
-export const GetUserInfo = (userId: string | undefined) => {
-  async function fetchUserInfo(): Promise<UserInfo | null> {
-    if (userId) {
-      const docRef = doc(db, "users", userId);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        return {
-          name: docSnap.data().name,
-          comment: docSnap.data().comment,
-          pokemons: ConverToPokemonArray(docSnap.data().pokemons),
-        };
-      }
-    }
-    return {
-      name: "",
-      comment: "",
-      pokemons: [],
-    };
-  }
-
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-
-  useEffect(() => {
-    if (userId) {
-      fetchUserInfo().then(setUserInfo);
-    }
-  }, [userId]);
-
-  if (!userInfo) return null;
-
-  return userInfo;
-};
-
-type FailInfo = {
-  isSuccess: boolean;
-  errorMessage?: string;
-};
-
-export const DeleteUser = async (
-  user: UserContextType
-): Promise<FailInfo | undefined> => {
+export const DeleteUser = async (user: UserContextType): Promise<void> => {
   const f = fixedNames;
   const auth = getAuth();
   const currentUser = auth.currentUser;
@@ -93,30 +51,19 @@ export const DeleteUser = async (
       const credential = GoogleAuthProvider.credentialFromResult(result);
       reauthenticateWithCredential(currentUser, credential!)
         .then(() => {
-          // User re-authenticated.
           deleteUser(currentUser)
             .then(() => {
-              // User deleted.
               if (user?.id) {
                 deleteDoc(doc(db, "users", user.id));
               }
               router.push("/");
-              return { isSuccess: true };
             })
-            .catch((error) => {
-              // An error ocurred
-              return {
-                isSuccess: false,
-                errorMessage: f.ERR_ACCOUT_FAIL_REMOVE,
-              };
+            .catch((e) => {
+              throw new Error(f.ERR_ACCOUT_FAIL_REMOVE, e);
             });
         })
-        .catch((error) => {
-          // An error ocurred
-          return {
-            isSuccess: false,
-            errorMessage: f.ERR_SOMETHING,
-          };
+        .catch((e) => {
+          throw new Error(f.ERR_SOMETHING, e);
         });
     });
   }

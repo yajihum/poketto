@@ -31,12 +31,7 @@ const WithdrawModal = ({ isOpen, setIsOpen }: Props) => {
   const [errorMsg, setErrorMsg] = useState<string | undefined>();
 
   const Withdraw = async () => {
-    const failInfo = await DeleteUser(user);
-    if (failInfo && !failInfo.isSuccess) {
-      setErrorMsg(failInfo.errorMessage);
-    } else {
-      Close;
-    }
+    DeleteUser(user);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Pokemons from "../../components/module/pokemons";
 import {
   LineIcon,
@@ -6,7 +6,6 @@ import {
   TwitterIcon,
   TwitterShareButton,
 } from "react-share";
-import { GetUserInfo } from "../../lib/module/user";
 import { useRouter } from "next/router";
 import Layout from "../../components/layout/layout";
 import Meta from "../../components/layout/meta";

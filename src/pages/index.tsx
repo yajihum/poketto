@@ -1,6 +1,4 @@
-import { RegionType } from "../types/pokemon";
 import Layout from "../components/layout/layout";
-import { getJaRegions } from "../lib/module/pokemon";
 import Image from "next/image";
 import Meta from "../components/layout/meta";
 import fixedNames from "../lib/fixed-name";

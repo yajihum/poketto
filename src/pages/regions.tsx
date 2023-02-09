@@ -1,9 +1,8 @@
-import { Pokemon, RegionType } from "../types/graphql_pokemon";
+import { RegionType } from "../types/graphql_pokemon";
 import Layout from "../components/layout/layout";
 import Link from "next/link";
 import Meta from "../components/layout/meta";
 import fixedNames from "../lib/fixed-name";
-import { getPokemons } from "../lib/module/graphql_pokemon";
 import { getJaRegions } from "../lib/module/pokemon";
 
 type Props = {
