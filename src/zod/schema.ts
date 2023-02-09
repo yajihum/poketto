@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PokeType } from "../types/pokemon";
+import { customErrorMap } from "../lib/zErrorMap";
 
 export const LoggedinUserSchema = z.object({
   comment: z.string().optional(),
@@ -15,3 +15,10 @@ export const LoggedinUserSchema = z.object({
 });
 
 export type LoggedinUserInfo = z.infer<typeof LoggedinUserSchema>;
+
+export const InputSchema = z.object({
+  name: z.string({ errorMap: customErrorMap }).min(1),
+  comment: z.string({ errorMap: customErrorMap }).max(50).optional(),
+});
+
+export type Inputs = z.infer<typeof InputSchema>;

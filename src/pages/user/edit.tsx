@@ -6,26 +6,16 @@ import { useEffect, useState } from "react";
 import InputField from "../../components/field/input-field";
 import Button from "../../components/ui/button";
 import TextareaField from "../../components/field/textarea-field";
-import { GetUserInfo, updateUser } from "../../lib/module/user";
+import { updateUser } from "../../lib/module/user";
 import DoneModal from "../../components/module/modal/done-modal";
 import Pokemons from "../../components/module/pokemons";
-import { UserInfo } from "../../types/user";
 import Meta from "../../components/layout/meta";
-import { z } from "zod";
-import { customErrorMap } from "../../lib/zErrorMap";
 import fixedNames from "../../lib/fixed-name";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoggedinUserInfo } from "../../zod/schema";
+import { Inputs, InputSchema, LoggedinUserInfo } from "../../zod/schema";
 import { getUserInfo } from "../../util/user/getUserInfo";
-
-const InputSchema = z.object({
-  name: z.string({ errorMap: customErrorMap }).min(1),
-  comment: z.string({ errorMap: customErrorMap }).max(50).optional(),
-});
-
-type Inputs = z.infer<typeof InputSchema>;
 
 const Mypage = () => {
   const user = useAuth();
