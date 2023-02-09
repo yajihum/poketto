@@ -38,7 +38,7 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
         </p>
       )}
       <div
-        className={`grid grid-cols-${gridNum} mb-10 items-center justify-items-center gap-2 rounded-xl bg-white px-2 pb-3 text-black outline outline-offset-0 outline-teal-100 sm:gap-6 sm:rounded-3xl sm:px-10`}
+        className={`grid grid-cols-${gridNum} mb-10 items-center justify-items-center gap-2 rounded-xl bg-white/90 px-4 pt-1 pb-4 text-black sm:gap-6 sm:px-10`}
       >
         {selectPoke.map(({ name, image }) => (
           <div key={name}>
@@ -54,7 +54,7 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
                   alt={name}
                   width={70}
                   height={70}
-                  className="md:h-28 md:w-28"
+                  className="md:h-20 md:w-20"
                 ></Image>
                 <p className="text-xs font-semibold sm:text-lg">{name}</p>
               </Button>
@@ -65,9 +65,9 @@ const Pokemons = ({ pokemons, isEdit, isShare, setUserPoke }: Props) => {
                   alt={name}
                   width={70}
                   height={70}
-                  className="md:h-28 md:w-28"
+                  className="md:h-24 md:w-24"
                 ></Image>
-                <p className="text-xs font-semibold sm:text-lg">{name}</p>
+                <p className="text-xs font-semibold sm:text-base">{name}</p>
               </div>
             )}
           </div>

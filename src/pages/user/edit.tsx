@@ -77,7 +77,7 @@ const Mypage = () => {
       {(user) => (
         <Layout>
           <Meta title={userInfo?.name + f.USER_PAGE_EDIT} />
-          <div className="mx-5 mt-4 rounded-3xl bg-white bg-opacity-20 px-8 py-2 font-dot text-white md:mx-0">
+          <div className="mx-5 mt-4 rounded-3xl bg-white bg-opacity-20 px-8 py-2 font-dot text-white md:mx-2">
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
               <div className="mx-4 mb-8 font-medium caret-orange-400">
                 <InputField
@@ -94,7 +94,7 @@ const Mypage = () => {
                   className="form-input mt-4 w-full resize-none rounded-md py-5 text-black outline outline-offset-0 outline-teal-100 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 md:py-8"
                 ></TextareaField>
               </div>
-              <div className="text-center font-dot text-white">
+              <div className="text-center font-dot text-white sm:mx-4">
                 {userInfo?.pokemons && userInfo.pokemons.length > 0 ? (
                   <Pokemons pokemons={userInfo.pokemons} isEdit></Pokemons>
                 ) : (
