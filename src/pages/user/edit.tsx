@@ -17,6 +17,8 @@ import fixedNames from "../../lib/fixed-name";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LoggedinUserInfo } from "../../zod/schema";
+import { getUserInfo } from "../../util/user/getUserInfo";
 
 const InputSchema = z.object({
   name: z.string({ errorMap: customErrorMap }).min(1),
@@ -60,23 +62,30 @@ const Mypage = () => {
     }
   };
 
-  let userInfo: UserInfo | null = null;
-
-  // これ必ずアサーション使って強制的にstringにするの良くない。いい方法を後で知る
-  const userId: string = user?.id as string;
-  userInfo = GetUserInfo(userId);
+  const [loggedinUser, setLoggedinUser] = useState<
+    LoggedinUserInfo | undefined
+  >();
 
   useEffect(() => {
-    reset({ name: userInfo?.name, comment: userInfo?.comment });
-  }, [reset, userInfo?.name, userInfo?.comment]);
+    // APIからユーザー情報を取得
+    if (user?.id) {
+      getUserInfo(user.id).then(setLoggedinUser);
+    }
+  }, [user?.id]);
 
-  if (!userInfo) return null;
+  useEffect(() => {
+    if (loggedinUser) {
+      reset({ name: loggedinUser.name, comment: loggedinUser.comment });
+    }
+  }, [reset, loggedinUser?.name, loggedinUser?.comment]);
+
+  if (!loggedinUser) return null;
 
   return (
     <UserGuard>
       {(user) => (
         <Layout>
-          <Meta title={userInfo?.name + f.USER_PAGE_EDIT} />
+          <Meta title={loggedinUser?.name + f.USER_PAGE_EDIT} />
           <div className="mx-5 mt-4 rounded-3xl bg-white bg-opacity-20 px-8 py-2 font-dot text-white md:mx-2">
             <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
               <div className="mx-4 mb-8 font-medium caret-orange-400">
@@ -95,8 +104,8 @@ const Mypage = () => {
                 ></TextareaField>
               </div>
               <div className="text-center font-dot text-white sm:mx-4">
-                {userInfo?.pokemons && userInfo.pokemons.length > 0 ? (
-                  <Pokemons pokemons={userInfo.pokemons} isEdit></Pokemons>
+                {loggedinUser?.pokemons && loggedinUser.pokemons.length > 0 ? (
+                  <Pokemons pokemons={loggedinUser.pokemons} isEdit></Pokemons>
                 ) : (
                   <div className="grid grid-rows-2">
                     <p className="mt-10 mb-20 text-base font-medium md:text-2xl">

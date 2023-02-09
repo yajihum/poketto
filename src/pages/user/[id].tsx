@@ -22,7 +22,7 @@ const AllUserInfo = () => {
   const [urlOrigin, setUrlOrigin] = useState("");
 
   const [userId, setId] = useState("");
-  const [user, setUser] = useState<LoggedinUserInfo>();
+  const [user, setUser] = useState<LoggedinUserInfo | undefined>();
 
   useEffect(() => {
     // idがqueryで利用可能になったら処理される
@@ -35,48 +35,48 @@ const AllUserInfo = () => {
     }
   }, [router, userId]);
 
-  const userInfo = GetUserInfo(userId);
+  //const userInfo = GetUserInfo(userId);
 
-  useMemo(() => {
+  useEffect(() => {
     const uri = new URL(window.location.href);
     setUrlOrigin(uri.origin);
   }, []);
 
-  if (!userInfo) return null;
+  if (!user) return null;
 
   return (
     <Layout>
-      <Meta title={userInfo.name + f.USER_PAGE} />
+      <Meta title={user.name + f.USER_PAGE} />
       <div
         className={`mx-6 rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white`}
       >
         <div className="mb-16 font-medium">
-          <p className="mt-6 text-3xl md:text-5xl">{userInfo.name}</p>
+          <p className="mt-6 text-xl md:text-3xl">{user.name}</p>
           <div className="mt-10">
             <TwitterShareButton
-              title={userInfo.name + f.USER_LIKE_POKE}
+              title={user.name + f.USER_LIKE_POKE}
               url={`${urlOrigin}/${id}`}
               className="mx-2 opacity-75"
             >
               <TwitterIcon size={50} round></TwitterIcon>
             </TwitterShareButton>
             <LineShareButton
-              title={userInfo?.name + f.USER_LIKE_POKE}
+              title={user?.name + f.USER_LIKE_POKE}
               url={`${urlOrigin}/${id}`}
               className="mx-2 opacity-75"
             >
               <LineIcon size={50} round></LineIcon>
             </LineShareButton>
           </div>
-          {userInfo && userInfo.comment && (
-            <p className="my-10 whitespace-pre-line text-2xl italic md:text-3xl">
-              {userInfo?.comment}
+          {user.comment && (
+            <p className="my-10 whitespace-pre-line text-xl italic md:text-2xl">
+              {user.comment}
             </p>
           )}
         </div>
-        <div className="mt-16 mb-20 sm:mt-20 sm:mb-52 md:mb-32">
-          {userInfo.pokemons && userInfo.pokemons.length > 0 ? (
-            <Pokemons pokemons={userInfo.pokemons} isEdit={false}></Pokemons>
+        <div className="mt-16 mb-20 sm:mx-4">
+          {user.pokemons && user.pokemons.length > 0 ? (
+            <Pokemons pokemons={user.pokemons} isEdit={false}></Pokemons>
           ) : (
             <div className="grid grid-rows-2 gap-5 pb-8">
               <Image

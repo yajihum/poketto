@@ -2,7 +2,7 @@ import Layout from "../../components/layout/layout";
 import UserGuard from "../../guards/user-guard";
 import Link from "next/link";
 import { useAuth } from "../../context/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pokemons from "../../components/module/pokemons";
 import { GetUserInfo } from "../../lib/module/user";
 import { UserInfo } from "../../types/user";
@@ -12,11 +12,17 @@ import Meta from "../../components/layout/meta";
 import WithdrawModal from "../../components/module/modal/withdraw-modal";
 import Button from "../../components/ui/button";
 import fixedNames from "../../lib/fixed-name";
+import { LoggedinUserInfo } from "../../zod/schema";
+import { getUserInfo } from "../../util/user/getUserInfo";
 
 const Mypage = () => {
   const user = useAuth();
   const f = fixedNames;
   const router = useRouter();
+  if (!user) {
+    router.replace("/");
+  }
+
   const actions = [
     {
       label: f.BTN_SHARE,
@@ -29,31 +35,29 @@ const Mypage = () => {
   ];
 
   const [isOpen, setIsOpen] = useState(false);
+  const [loggedinUser, setLoggedinUser] = useState<
+    LoggedinUserInfo | undefined
+  >();
 
-  let userInfo: UserInfo | null = null;
+  useEffect(() => {
+    // APIからユーザー情報を取得
+    if (user?.id) {
+      getUserInfo(user.id).then(setLoggedinUser);
+    }
+  }, [user?.id]);
 
-  const userId: string | undefined = user?.id;
-  userInfo = GetUserInfo(userId);
-
-  if (!userInfo) return null;
-
-  if (!user) {
-    router.replace("/");
-  }
-
-  const mb =
-    userInfo?.pokemons && userInfo.pokemons.length > 0 ? "mb-36" : "mb-42";
+  if (!loggedinUser) return null;
 
   return (
     <UserGuard>
       {(user) => (
         <Layout>
-          <Meta title={userInfo?.name + f.USER_PAGE} />
+          <Meta title={loggedinUser?.name + f.USER_PAGE} />
           <div
-            className={`mx-6 ${mb} rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white md:mt-8`}
+            className={`mx-6 rounded-3xl bg-white bg-opacity-20 px-8 py-4 text-center font-dot text-white md:mt-8`}
           >
             <div className="mb-16 font-medium">
-              <p className="mt-6 text-xl md:text-3xl">{userInfo?.name}</p>
+              <p className="mt-6 text-xl md:text-3xl">{loggedinUser?.name}</p>
               <div className="my-8 flex items-center justify-center">
                 {actions.map((action) => (
                   <Link
@@ -66,17 +70,17 @@ const Mypage = () => {
                 ))}
               </div>
             </div>
-            {userInfo?.comment && (
+            {loggedinUser?.comment && (
               <div className="">
                 <p className="whitespace-pre-line text-lg italic md:text-xl">
-                  {userInfo?.comment}
+                  {loggedinUser?.comment}
                 </p>
               </div>
             )}
             <div className="my-6">
-              {userInfo?.pokemons && userInfo.pokemons.length > 0 ? (
+              {loggedinUser?.pokemons && loggedinUser.pokemons.length > 0 ? (
                 <Pokemons
-                  pokemons={userInfo.pokemons}
+                  pokemons={loggedinUser.pokemons}
                   isEdit={false}
                 ></Pokemons>
               ) : (
